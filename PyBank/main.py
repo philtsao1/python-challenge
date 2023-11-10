@@ -50,7 +50,7 @@ with open (budgetData_csv) as budgetData_File:
             change_in_profit_loss = profit_loss_month_current - profit_loss_month_previous
             profit_change[row[0]] = change_in_profit_loss
             profit_loss_month_previous = profit_loss_month_current
-            
+
 #calculate the average            
 average_change = round((sum(profit_change.values()))/len(profit_change),2)
 
@@ -69,8 +69,15 @@ print(f"Average Change: ${average_change}")
 print(f"Greatest Increase in Profits: {max_key} (${greatest_increase})")
 print(f"Greatest Decrease in Profits: {min_key} (${greatest_decrease})")
 
+
+
+#create folder
+createFolder = os.path.join("PyBank","Analysis")
+if not os.path.exists(createFolder):
+    os.makedirs(createFolder)
+
 #create a new text file and populate with same information
-budgetData_text = os.path.join("PyBank","Resources", "budget_data.txt")
+budgetData_text = os.path.join("PyBank","Analysis", "budget_data.txt")
 with open(budgetData_text, "w") as outfile:
     outfile.write("Financial Analysis\n")
     outfile.write("----------------------------\n")
